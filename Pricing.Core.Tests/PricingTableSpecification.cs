@@ -6,7 +6,7 @@ namespace Pricing.Core.Tests;
 public class PricingTableSpecification
 {
     [Fact]
-    public void ShouldFailIfPriceTiersIsNull()
+    public void ShouldThrowNullExceptionIfPriceTiersIsNull()
     {
         var create = () => new PricingTable(null!);
 
@@ -14,11 +14,13 @@ public class PricingTableSpecification
     }
 
     [Fact]
-    public void ShouldFailIfHasNotPriceTiers()
+    public void ShouldThrowAgrumentExceptionIfHasNotPriceTiers()
     {
         var create = () => new PricingTable(Array.Empty<PriceTier>());
 
-        create.Should().Throw<ArgumentException>();
+        create.Should().ThrowExactly<ArgumentException>()
+            .WithParameterName(nameof(PricingTable.Tiers))
+            .WithMessage("Missing Pricing Tiers*");
         
     }
 
@@ -58,19 +60,19 @@ public class PricingTableSpecification
     }
 
     [Fact]
-    public void ShouldBeAbleToSetMaximumDaillyPrice()
+    public void ShouldBeAbleToSetMaximumDailyPrice()
     {
-        const int maxDaillyPrice = 15;
+        const int maxDailyPrice = 15;
         var pricingTable = new PricingTable(new[]
         {
             CreatePriceTier(hourLimit: 24)
-        }, maxDaillyPrice: maxDaillyPrice);
+        }, maxDaillyPrice: maxDailyPrice);
 
-        pricingTable.GetMaxDailyPrice().Should().Be(maxDaillyPrice);
+        pricingTable.GetMaxDailyPrice().Should().Be(maxDailyPrice);
     }
 
     [Fact]
-    public void ShouldFailIfTiersDoNotCover24hours()
+    public void ShouldFailIfTiersDoNotCover24Hours()
     {
         var create = () => new PricingTable(new[]
         {

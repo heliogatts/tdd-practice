@@ -13,7 +13,7 @@ public class PricingTable
                 ?? throw new ArgumentNullException();
 
         if (!Tiers.Any())
-            throw new ArgumentException();
+            throw new ArgumentException("Missing Pricing Tiers", nameof(Tiers));
         
         if (Tiers.Last().HourLimit < 24)
             throw new ArgumentException();
