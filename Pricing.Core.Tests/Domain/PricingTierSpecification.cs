@@ -2,7 +2,7 @@ using FluentAssertions;
 using Pricing.Core.Domain;
 using Pricing.Core.Exceptions;
 
-namespace Pricing.Core.Tests;
+namespace Pricing.Core.Tests.Domain;
 
 public class PricingTierSpecification
 {

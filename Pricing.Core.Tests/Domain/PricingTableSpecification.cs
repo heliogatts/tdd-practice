@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Pricing.Core.Domain;
 
-namespace Pricing.Core.Tests;
+namespace Pricing.Core.Tests.Domain;
 
 public class PricingTableSpecification
 {
