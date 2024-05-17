@@ -1,4 +1,4 @@
-using Pricing.Core.Tests;
+using Pricing.Core.Domain;
 
 namespace Pricing.Core;
 
@@ -14,6 +14,8 @@ public class PricingManager
     {
         ArgumentNullException.ThrowIfNull(request);
         
-        return await _pricingStore.SaveAsync(null!, cancellationToken);
+        var pricingTable = request.ToPricingTable();
+        
+        return await _pricingStore.SaveAsync(pricingTable, cancellationToken);
     }
 }
