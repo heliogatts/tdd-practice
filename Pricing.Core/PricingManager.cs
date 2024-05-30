@@ -2,7 +2,7 @@ using Pricing.Core.Domain;
 
 namespace Pricing.Core;
 
-public class PricingManager
+public class PricingManager : IPricingManager
 {
     private readonly IPricingStore _pricingStore;
 
