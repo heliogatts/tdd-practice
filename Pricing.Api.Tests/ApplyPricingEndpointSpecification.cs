@@ -52,7 +52,7 @@ public class ApplyPricingEndpointSpecification
         
         var api = new ApiFactory(services =>
         {
-            services.TryAddScoped<IPricingStore>(s => pricingStore);
+            services.TryAddScoped<IPricingStore>( _=> pricingStore);
         });
         var client = api.CreateClient();
         var applyPricingRequest = CreateRequest();
